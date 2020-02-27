@@ -1,0 +1,16 @@
+
+version: '3.7'
+
+services:
+  ocr-practice:
+    build: containers
+    tty: true
+    stdin_open: true
+    privileged: true
+    security_opt:
+      - seccomp:unconfined
+    working_dir: /go/src/github.com/sheva0914/ocr-practice
+    volumes:
+      - ${GOPATH}/src/github.com/sheva0914/ocr-practice:/go/src/github.com/sheva0914/ocr-practice:cached
+      - ${GOPATH}/pkg/mod:/go/pkg/mod:cached
+    command: go run main.go
